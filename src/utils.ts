@@ -48,7 +48,7 @@ function showTypoDialog(title: string, typo: string, width?: string) {
     });
 }
 
-export async function showChangeLog(pluginName: string, version: string): Promise<Dialog|undefined> {
+export async function showChangeLog(pluginName: string, version: string, changelogPath?: string): Promise<Dialog|undefined> {
     try {
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);
@@ -64,7 +64,11 @@ export async function showChangeLog(pluginName: string, version: string): Promis
             return;
         }
 
-        const path = `/data/plugins/${pluginName}/i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
+        //q: ??是什么意思
+        //a: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
+        let filename = changelogPath ?? `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
+
+        const path = `/data/plugins/${pluginName}/${filename}`;
 
         let file: string = await getFile(path);
         let code404 = file.match(/"code":404/g);

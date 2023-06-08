@@ -10,7 +10,15 @@ interface TrackResult {
     Dialog: Dialog | undefined;
 }
 
-export async function changelog(plugin: Plugin): Promise<TrackResult> {
+/**
+ * 
+ * @param plugin
+ *      The plugin whose changelog you want to show
+ * @param changelogPath
+ *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`
+ * @returns 
+ */
+export async function changelog(plugin: Plugin, changelogPath?: string): Promise<TrackResult> {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
     let result: TrackResult = {
         VersionChanged: undefined,
@@ -37,7 +45,7 @@ export async function changelog(plugin: Plugin): Promise<TrackResult> {
             result.VersionChanged = true;
             console.log(`${plugin.name} got new version: ${oldVer} -> ${version}`);
             plugin.saveData(StorageName, version);
-            result.Dialog = await showChangeLog(plugin.name, version);
+            result.Dialog = await showChangeLog(plugin.name, version, changelogPath);
         }
     } catch (error_msg) {
         console.error(`Setting load error: ${error_msg}`);
