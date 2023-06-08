@@ -1,30 +1,25 @@
 import { Plugin } from "siyuan";
 import { getFile } from "./utils";
 
-export async function track(plugin: Plugin) {
-    let pluginName = plugin.name;
-    return pluginName;
-}
-
-
 const StorageName = 'PluginVersion';
 
-async function checkPluginVersion(plugin: Plugin) {
+
+export async function track(plugin: Plugin) {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
     try {
-        let plugin_file = await getFile(pluginJsonPath);
-        if (plugin_file === null) {
+        let pluginFile = await getFile(pluginJsonPath);
+        if (pluginFile === null) {
             return;
         }
-        plugin_file = JSON.parse(plugin_file);
-        let version = plugin_file.version;
+        pluginFile = JSON.parse(pluginFile);
+        let version = pluginFile.version;
         console.log(`${plugin.name} Ver: ${version}`);
 
-        let oldVer = plugin.data[StorageName];
+        let oldVer = await plugin.loadData(StorageName);
 
         //发现更新到了不同的版本
         if (version !== oldVer) {
-            plugin.data[StorageName] = version;
+            console.log(`${plugin.name} got new version: ${oldVer} -> ${version}`);
             plugin.saveData(StorageName, version);
             // showChangeLog(this.version);
         }
@@ -32,4 +27,3 @@ async function checkPluginVersion(plugin: Plugin) {
         console.error(`Setting load error: ${error_msg}`);
     }
 }
-
