@@ -1,5 +1,11 @@
 import { Dialog } from "siyuan";
 
+declare global {
+    interface Window {
+        siyuan: any;
+    }
+}
+
 async function myFetchSyncPost(url: string, data: any) {
     const init: RequestInit = {
         method: "POST",
@@ -52,8 +58,13 @@ export async function showChangeLog(pluginName: string, version: string): Promis
         }
         let mainVersion = match[0];
 
-        //TODO 解决 i18n 问题
-        const path = `/data/plugins/${pluginName}/i18n/${i18n.ChangeLog.file}-${mainVersion}.md`;
+        let currentLang = window?.siyuan?.config?.lang;
+        if (currentLang === undefined) {
+            console.log('Get Lang error');
+            return;
+        }
+
+        const path = `/data/plugins/${pluginName}/CHANGELOG-${currentLang}-${mainVersion}.md`;
 
         let file: string = await getFile(path);
         let code404 = file.match(/"code":404/g);
