@@ -13,7 +13,7 @@
 2. 在自己的代码中导入并使用
 
     ```ts
-    import { changelog } from sy-plugin-changelog
+    import { changelog } from 'sy-plugin-changelog';
 
     export default class PluginSample extends Plugin {
         async onload() {
