@@ -1,6 +1,6 @@
 {
   "name": "sy-plugin-changelog",
-  "version": "0.0.4",
+  "version": "0.0.4-patch",
   "author": "frostime",
   "description": "Show changelog for siyuan plugin",
   "keywords": [
