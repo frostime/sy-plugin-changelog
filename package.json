@@ -1,14 +1,16 @@
 {
   "name": "sy-plugin-changelog",
   "version": "0.0.2",
-  "description": "",
+  "author": "frostime",
+  "description": "Show changelog for siyuan plugin",
+  "keywords": [
+    "siyuan"
+  ],
   "main": "src/index.ts",
   "scripts": {
     "package": "pnpm pack"
   },
-  "keywords": [],
-  "author": "frostime",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "siyuan": "^0.7.3"
   }
