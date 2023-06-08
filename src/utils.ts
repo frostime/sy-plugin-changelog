@@ -50,7 +50,7 @@ function showTypoDialog(title: string, typo: string, width?: string) {
 
 export async function showChangeLog(pluginName: string, version: string): Promise<Dialog|undefined> {
     try {
-        //从 version 版本号中提取主要版本号 mainVersion，比如 1.1.1-beta 或 1.1.1.patch 等，都提取出 1.1.1
+        //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);
         if (match === null) {
             console.log(`版本号格式不正确：${version}`);
@@ -64,7 +64,7 @@ export async function showChangeLog(pluginName: string, version: string): Promis
             return;
         }
 
-        const path = `/data/plugins/${pluginName}/CHANGELOG-${currentLang}-${mainVersion}.md`;
+        const path = `/data/plugins/${pluginName}/i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
 
         let file: string = await getFile(path);
         let code404 = file.match(/"code":404/g);

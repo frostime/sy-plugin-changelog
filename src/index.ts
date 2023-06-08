@@ -31,6 +31,7 @@ export async function track(plugin: Plugin): Promise<TrackResult> {
         result.OldVersion = oldVer;
         result.NewVersion = version;
 
+        result.VersionChanged = false;
         //Another version found
         if (version !== oldVer) {
             result.VersionChanged = true;
