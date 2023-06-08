@@ -3,7 +3,6 @@ import { getFile } from "./utils";
 
 const StorageName = 'PluginVersion';
 
-
 export async function track(plugin: Plugin) {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
     try {
