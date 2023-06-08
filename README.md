@@ -5,7 +5,7 @@
 使用方法:
 
 1. `pnpm add -D sy-plugin-changelog`
-2. `import {track} from pnpm add -D sy-plugin-changelog`
+2. `import { track } from sy-plugin-changelog`
 3. 在 onload 当中调用 `track(this)`
 4. 请在 `i18n` 目录下新建文件 `CHANGELOG-<lang>-<version>.md` 文件, 并保证被加入打包当中
     - 如果你是用的是 `vite-plugin` 模板，那么 i18n 下的文件会自动打包到发布包中

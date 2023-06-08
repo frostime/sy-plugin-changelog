@@ -6,6 +6,10 @@
   "keywords": [
     "siyuan"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frostime/sy-plugin-changelog"
+  },
   "main": "src/index.ts",
   "scripts": {
     "package": "pnpm pack"
