@@ -13,28 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: actions-ecosystem/action-regex-match@v2
-        id: regex-match
-        with:
-          text: ${{ github.ref_name }}
-          regex: '^v\d+\.\d+\.\d+(-\w+)?'
-
       - name: Release
-        if: ${{ steps.regex-match.outputs.match != '' && steps.regex-match.outputs.group1 == '' }}
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifactErrorsFailBuild: true
-          artifacts: "package.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: false
-
-      - name: Prerelease
-        if: ${{ steps.regex-match.outputs.match != '' && steps.regex-match.outputs.group1 != '' }}
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          artifactErrorsFailBuild: true
-          artifacts: "package.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: true
