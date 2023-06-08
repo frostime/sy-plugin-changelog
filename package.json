@@ -1,0 +1,15 @@
+{
+  "name": "sy-plugin-changelog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "siyuan": "^0.7.3"
+  }
+}
