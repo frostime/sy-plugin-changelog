@@ -21,7 +21,7 @@ async function myFetchSyncPost(url: string, data: any) {
 /**
  * 使用了自定义的 fetchSyncPost
  * @param path
- * @returns 返回原始的文本 txt
+ * @returns Raw txt
  */
 export async function getFile(path: string): Promise<any> {
     let data = {
@@ -53,7 +53,7 @@ export async function showChangeLog(pluginName: string, version: string): Promis
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);
         if (match === null) {
-            console.log(`版本号格式不正确：${version}`);
+            console.log(`Failed to parse plugin version: ${version}`);
             return;
         }
         let mainVersion = match[0];
@@ -69,7 +69,7 @@ export async function showChangeLog(pluginName: string, version: string): Promis
         let file: string = await getFile(path);
         let code404 = file.match(/"code":404/g);
         if (code404 !== null) {
-            console.log(`找不到更新文件：${path}`);
+            console.log(`Faild to find changelog file: ${path}`);
             return;
         }
 
