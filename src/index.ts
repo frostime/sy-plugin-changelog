@@ -10,7 +10,7 @@ interface TrackResult {
     Dialog: Dialog | undefined;
 }
 
-export async function track(plugin: Plugin): Promise<TrackResult> {
+export async function changelog(plugin: Plugin): Promise<TrackResult> {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
     let result: TrackResult = {
         VersionChanged: undefined,

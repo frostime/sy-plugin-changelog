@@ -5,8 +5,8 @@
 ### 使用方法
 
 1. 安装依赖: `pnpm add -D sy-plugin-changelog`
-2. 在自己的代码中导入: `import { track } from sy-plugin-changelog`
-3. 在 onload 当中调用: `track(this)`
+2. 在自己的代码中导入: `import { changelog } from sy-plugin-changelog`
+3. 在 onload 当中调用: `changelog(this)`
 4. 请在 `i18n` 目录下新建文件 `CHANGELOG-<lang>-<version>.md` 文件, 并保证被加入打包当中
     - 例如: `CHANGELOG-zh_CN-0.0.2.md`
     - 如果你是用的是 `vite-plugin` 模板，那么 i18n 下的文件会自动打包到发布包中, 无需手动放入
