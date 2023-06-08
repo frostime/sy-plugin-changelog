@@ -7,7 +7,7 @@
     "package": "pnpm pack"
   },
   "keywords": [],
-  "author": "",
+  "author": "frostime",
   "license": "ISC",
   "devDependencies": {
     "siyuan": "^0.7.3"
