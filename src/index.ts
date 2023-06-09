@@ -1,5 +1,5 @@
 import { Plugin, Dialog } from "siyuan";
-import { getFile, showChangeLog } from "./utils";
+import { getFile, showChangeLog, LangFallback } from "./utils";
 
 const StorageName = 'PluginVersion';
 
@@ -16,9 +16,16 @@ interface TrackResult {
  *      The plugin whose changelog you want to show
  * @param changelogPath
  *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`
+ * @param langFallback
+ *      Optional, the fallback language, only used when the changelogPath is not specified.
+ *      default is:\
+ *      ```
+ *      {"zh_CN": "zh_CN", "zh_CHT": "zh_CN", "en_US": "en_US", "es_ES": "en_US", "fr_FR": "en_US"}
+ *      ```
+ *      A custom langFallback will be merged with the default one.
  * @returns 
  */
-export async function changelog(plugin: Plugin, changelogPath?: string): Promise<TrackResult> {
+export async function changelog(plugin: Plugin, changelogPath?: string, langFallback?: LangFallback): Promise<TrackResult> {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
     let result: TrackResult = {
         VersionChanged: undefined,
@@ -45,7 +52,7 @@ export async function changelog(plugin: Plugin, changelogPath?: string): Promise
             result.VersionChanged = true;
             console.log(`${plugin.name} got new version: ${oldVer} -> ${version}`);
             plugin.saveData(StorageName, version);
-            result.Dialog = await showChangeLog(plugin.name, version, changelogPath);
+            result.Dialog = await showChangeLog(plugin.name, version, changelogPath, langFallback);
         }
     } catch (error_msg) {
         console.error(`Setting load error: ${error_msg}`);

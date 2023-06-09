@@ -48,7 +48,17 @@ function showTypoDialog(title: string, typo: string, width?: string) {
     });
 }
 
-export async function showChangeLog(pluginName: string, version: string, changelogPath?: string): Promise<Dialog|undefined> {
+export type Lang = "zh_CN" | "zh_CHT" | "en_US" | "es_ES" | "fr_FR";
+export type LangFallback = { [key in Lang]?: Lang };
+let DefaultLangFallback: LangFallback = {
+    "zh_CN": "zh_CN",
+    "zh_CHT": "zh_CN",
+    "en_US": "en_US",
+    "es_ES": "en_US",
+    "fr_FR": "en_US",
+}
+
+export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<Dialog|undefined> {
     try {
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);
@@ -58,11 +68,23 @@ export async function showChangeLog(pluginName: string, version: string, changel
         }
         let mainVersion = match[0];
 
-        let currentLang = window?.siyuan?.config?.lang;
+        let currentLang: Lang = window?.siyuan?.config?.lang;
         if (currentLang === undefined) {
             console.log('Get Lang error');
             return;
         }
+
+        if (langFallback === undefined) {
+            langFallback = DefaultLangFallback;
+        } else {
+            //Merge langFallback with DefaultLangFallback
+            for (let key in DefaultLangFallback) {
+                if (langFallback[key as Lang] === undefined) {
+                    langFallback[key as Lang] = DefaultLangFallback[key as Lang];
+                }
+            }
+        }
+        currentLang = langFallback[currentLang] ?? currentLang;
 
         //q: ??是什么意思
         //a: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
