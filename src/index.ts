@@ -3,7 +3,7 @@ import { getFile, showChangeLog, LangFallback } from "./utils";
 
 const StorageName = 'PluginVersion';
 
-interface TrackResult {
+interface ChangelogResult {
     VersionChanged: boolean | undefined;
     OldVersion: string | undefined;
     NewVersion: string | undefined;
@@ -25,9 +25,9 @@ interface TrackResult {
  *      A custom langFallback will be merged with the default one.
  * @returns 
  */
-export async function changelog(plugin: Plugin, changelogPath?: string, langFallback?: LangFallback): Promise<TrackResult> {
+export async function changelog(plugin: Plugin, changelogPath?: string, langFallback?: LangFallback): Promise<ChangelogResult> {
     const pluginJsonPath = `/data/plugins/${plugin.name}/plugin.json`
-    let result: TrackResult = {
+    let result: ChangelogResult = {
         VersionChanged: undefined,
         OldVersion: undefined,
         NewVersion: undefined,

@@ -41,7 +41,9 @@ function showTypoDialog(title: string, typo: string, width?: string) {
         title: title,
         content: `
         <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
-            ${typo}
+            <div id="dialogContent"  style="font-size: 1rem">
+                ${typo}
+            </div>
         </div>`,
         width: width,
         height: "50%"
@@ -58,7 +60,7 @@ let DefaultLangFallback: LangFallback = {
     "fr_FR": "en_US",
 }
 
-export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<Dialog|undefined> {
+export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<Dialog | undefined> {
     try {
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);

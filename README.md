@@ -51,4 +51,30 @@
         "fr_FR": "en_US",
     }
     ```
+- 返回值: changelog 返回的参数为
+
+    ```ts
+    interface ChangelogResult {
+        VersionChanged: boolean | undefined;
+        OldVersion: string | undefined;
+        NewVersion: string | undefined;
+        Dialog: Dialog | undefined;
+    }
+    ```
+
+    当中 `Dialog` 属性就是显示的 dialog 窗口, 内部 dom 如下
+
+    ```ts
+    return new Dialog({
+        title: title,
+        content: `
+        <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
+            <div id="dialogContent"  style="font-size: 1rem">
+                ${typo}
+            </div>
+        </div>`,
+        width: width,
+        height: "50%"
+    });
+    ```
 
