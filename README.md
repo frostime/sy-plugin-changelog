@@ -32,10 +32,23 @@
 - `<lang>` 应当和思源 `window.siyuan.config.lang` 一致, 例如: `zh_CN`
 - `<version>` 应当和 `plugin.json` 中 version 字段一致, 且格式为 `/\d+\.\d+\.\d+/`, 如 `1.1.2`
     - 注意, 如果你的版本是 `1.1.2-dev1`、`1.1.2-beta` 等，那么还是只会匹配到`1.1.2`
-- `changelog` 有一个可选参数 `changelogPath` 可以自定义指定更新日志的路径, 该路径默认以插件目录为根目录:
+- 可选参数: `changelogPath` 可以自定义指定更新日志的路径, 该路径默认以插件目录为根目录:
 
     ```ts
     let filename = changelogPath ?? `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
     const path = `/data/plugins/${pluginName}/${filename}`;
+    ```
+- 可选参数: `langFallback` 指定语言的 Fallback，默认已经设置好了, 大部分情况下不用自行设置
+
+    ```ts
+    export type Lang = "zh_CN" | "zh_CHT" | "en_US" | "es_ES" | "fr_FR";
+    export type LangFallback = { [key in Lang]?: Lang };
+    let DefaultLangFallback: LangFallback = {
+        "zh_CN": "zh_CN",
+        "zh_CHT": "zh_CN",
+        "en_US": "en_US",
+        "es_ES": "en_US",
+        "fr_FR": "en_US",
+    }
     ```
 
