@@ -88,15 +88,13 @@ export async function showChangeLog(pluginName: string, version: string, changel
         }
         currentLang = langFallback[currentLang] ?? currentLang;
 
-        let filename;
         if (changelogPath === undefined) {
-            filename = `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
+            changelogPath = `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
         } else {
-            filename = changelogPath;
-            filename = filename.replace(/\${lang}/g, currentLang).replace(/\${(?:ver|version)}/g, mainVersion);
+            changelogPath = changelogPath.replace(/\${lang}/g, currentLang).replace(/\${(?:ver|version)}/g, mainVersion);
         }
 
-        const path = `/data/plugins/${pluginName}/${filename}`;
+        const path = `/data/plugins/${pluginName}/${changelogPath}`;
 
         let file: string = await getFile(path);
         let code404 = file.match(/"code":404/g);
