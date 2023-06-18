@@ -15,9 +15,12 @@ interface ChangelogResult {
  * @param plugin
  *      The plugin whose changelog you want to show
  * @param changelogPath
- *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`
+ *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${lang}-${lang}.md`\
+ *      You can specify a concrete path like `i18n/CHANGELOG-zh_CN-1.0.0.md`\
+ *      Or you can use placeholder `${lang}` and `${ver}`, `${version}, the ${lang} will be replaced with current language, and ${ver} will be replaced with the main version of the plugin.
+ * 
  * @param langFallback
- *      Optional, the fallback language, only used when the changelogPath is not specified.
+ *      Optional, the fallback language
  *      default is:\
  *      ```
  *      {"zh_CN": "zh_CN", "zh_CHT": "zh_CN", "en_US": "en_US", "es_ES": "en_US", "fr_FR": "en_US"}

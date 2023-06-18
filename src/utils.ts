@@ -88,9 +88,13 @@ export async function showChangeLog(pluginName: string, version: string, changel
         }
         currentLang = langFallback[currentLang] ?? currentLang;
 
-        //q: ??是什么意思
-        //a: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
-        let filename = changelogPath ?? `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
+        let filename;
+        if (changelogPath === undefined) {
+            filename = `i18n/CHANGELOG-${currentLang}-${mainVersion}.md`;
+        } else {
+            filename = changelogPath;
+            filename = filename.replace(/\${lang}/g, currentLang).replace(/\${(?:ver|version)}/g, mainVersion);
+        }
 
         const path = `/data/plugins/${pluginName}/${filename}`;
 
