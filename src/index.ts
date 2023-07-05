@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2023 by frostime (Yp Z), All Rights Reserved.
+ * @Author       : Yp Z
+ * @Date         : 2023-06-18 11:51:58
+ * @FilePath     : /src/index.ts
+ * @LastEditTime : 2023-07-05 22:48:45
+ * @Description  : 
+ */
 import { Plugin, Dialog } from "siyuan";
 import { getFile, showChangeLog, LangFallback } from "./utils";
 
@@ -15,7 +23,7 @@ interface ChangelogResult {
  * @param plugin
  *      The plugin whose changelog you want to show
  * @param changelogPath
- *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${lang}-${lang}.md`\
+ *      Optional, the path of changelog file, default is `i18n/CHANGELOG-${lang}-${version}.md`\
  *      You can specify a concrete path like `i18n/CHANGELOG-zh_CN-1.0.0.md`\
  *      Or you can use placeholder `${lang}` and `${ver}`, `${version}, the ${lang} will be replaced with current language, and ${ver} will be replaced with the main version of the plugin.
  * 
