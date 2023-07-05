@@ -72,14 +72,14 @@ interface ChangelogResult {
     VersionChanged: boolean | undefined;
     OldVersion: string | undefined;
     NewVersion: string | undefined;
-    Dialog: Dialog | undefined;
+    Dialog: TypoDialog | undefined;
 }
 ```
 
 当中 `Dialog` 属性就是显示的 dialog 窗口, 内部 dom 如下
 
 ```ts
-return new Dialog({
+return new TypoDialog({
     title: title,
     content: `
     <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
@@ -91,4 +91,6 @@ return new Dialog({
     height: "50%"
 });
 ```
+
+`TypoDialog` 本质上就是在 SiYuan 的 `Dialog` 的基础上封装了一两个方法。
 
