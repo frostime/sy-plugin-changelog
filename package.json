@@ -4,7 +4,7 @@
   "author": "frostime",
   "description": "Show changelog for siyuan plugin",
   "keywords": [
-    "siyuan"
+    "siyuan", "siyuan plugin"
   ],
   "repository": {
     "type": "git",
