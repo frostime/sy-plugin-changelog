@@ -36,12 +36,33 @@ export async function getFile(path: string): Promise<any> {
     }
 }
 
+export class TypoDialog extends Dialog {
+
+    eleContainer: HTMLElement;
+
+    constructor(options: any) {
+        super(options);
+        this.eleContainer = this.element.querySelector('.b3-dialog__container')!;
+    }
+
+    setSize(size: { width?: string; height?: string }) {
+        let ele: HTMLElement = this.element.querySelector('.b3-dialog__container')!;
+        ele.style.width = size.width ?? ele.style.width;
+        ele.style.height = size.height ?? ele.style.height;
+    }
+
+    setFont(size: string) {
+        let ele: HTMLElement = this.element.querySelector('#dialogContent')!;
+        ele.style.fontSize = size;
+    }
+}
+
 function showTypoDialog(title: string, typo: string, width?: string) {
-    return new Dialog({
+    return new TypoDialog({
         title: title,
         content: `
         <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
-            <div id="dialogContent"  style="font-size: 1rem">
+            <div id="dialogContent" style="font-size: 1rem">
                 ${typo}
             </div>
         </div>`,
@@ -60,7 +81,7 @@ let DefaultLangFallback: LangFallback = {
     "fr_FR": "en_US",
 }
 
-export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<Dialog | undefined> {
+export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<TypoDialog | undefined> {
     try {
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);

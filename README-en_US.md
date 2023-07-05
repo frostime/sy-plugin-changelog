@@ -88,7 +88,7 @@ interface ChangelogResult {
     VersionChanged: boolean | undefined;
     OldVersion: string | undefined;
     NewVersion: string | undefined;
-    Dialog: Dialog | undefined;
+    Dialog: TypoDialog | undefined;
 }
 ```
 
@@ -97,7 +97,7 @@ The `Dialog` property of this object is the displayed dialog window, with the in
 
 
 ```ts
-return new Dialog({
+return new TypoDialog({
     title: title,
     content: `
     <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
@@ -109,3 +109,5 @@ return new Dialog({
     height: "50%"
 });
 ```
+
+`TypoDialog` is essentially a SiYuan `Dialog`, wrapped with some utility method.
