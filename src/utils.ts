@@ -36,7 +36,7 @@ export async function getFile(path: string): Promise<any> {
     }
 }
 
-class MyDialog extends Dialog {
+export class TypoDialog extends Dialog {
 
     eleContainer: HTMLElement;
 
@@ -58,7 +58,7 @@ class MyDialog extends Dialog {
 }
 
 function showTypoDialog(title: string, typo: string, width?: string) {
-    return new MyDialog({
+    return new TypoDialog({
         title: title,
         content: `
         <div id="dialog" class="b3-typography" style="margin: 2rem; font-size: 1rem">
@@ -81,7 +81,7 @@ let DefaultLangFallback: LangFallback = {
     "fr_FR": "en_US",
 }
 
-export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<Dialog | undefined> {
+export async function showChangeLog(pluginName: string, version: string, changelogPath?: string, langFallback?: LangFallback): Promise<TypoDialog | undefined> {
     try {
         //Get mainVersion，1.1.1-beta or 1.1.1.patch , has main version as 1.1.1
         let match = version.match(/\d+\.\d+\.\d+/g);

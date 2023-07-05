@@ -12,7 +12,8 @@
   },
   "main": "src/index.ts",
   "scripts": {
-    "package": "pnpm pack"
+    "build": "tsc",
+    "package": "tsc && pnpm pack"
   },
   "license": "MIT",
   "devDependencies": {

@@ -6,8 +6,8 @@
  * @LastEditTime : 2023-07-05 22:48:45
  * @Description  : 
  */
-import { Plugin, Dialog } from "siyuan";
-import { getFile, showChangeLog, LangFallback } from "./utils";
+import { Plugin } from "siyuan";
+import { getFile, showChangeLog, LangFallback, TypoDialog } from "./utils";
 
 const StorageName = 'PluginVersion';
 
@@ -15,7 +15,7 @@ interface ChangelogResult {
     VersionChanged: boolean | undefined;
     OldVersion: string | undefined;
     NewVersion: string | undefined;
-    Dialog: Dialog | undefined;
+    Dialog: TypoDialog | undefined;
 }
 
 /**
